@@ -1,0 +1,34 @@
+{
+  "_comment": "INTENTIONALLY FAKE SECRETS - FOR SECURITY SCANNER TESTING ONLY. None of these credentials are real.",
+  "aws": {
+    "access_key_id": "AKIAIOSFODNN7EXAMPLE",
+    "secret_access_key": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+    "region": "us-east-1"
+  },
+  "github": {
+    "personal_access_token": "ghp_ABCDEFGHIJKLMNOPQRSTUVWXYz1234567890",
+    "webhook_secret": "github_webhook_secret_value_12345"
+  },
+  "azure": {
+    "storage_connection_string": "DefaultEndpointsProtocol=https;AccountName=insecurestorageacct;AccountKey=kXOBaBf1RExAMPLEKEYGvNaz2RrI7fExampleStorageAccountKeyEndingIn==;EndpointSuffix=core.windows.net",
+    "tenant_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "client_secret": "azr_client_secret_EXAMPLE_1234567890abcdef"
+  },
+  "database": {
+    "connection_string": "Server=myserver.database.windows.net;Database=mydb;User Id=admin;Password=P@ssw0rd123!;",
+    "redis_url": "redis://:secretpassword@redis-host.example.com:6379/0"
+  },
+  "api_keys": {
+    "sendgrid": "SG.ExAmPlEkEy123456789.abcdefghijklmnopqrstuvwxyz1234567890ABCDE",
+    "stripe_secret": "sk_test_FAKE_KEY_FOR_SCANNER_TESTING_ONLY_1234567890",
+    "slack_token": "xoxb-FAKE-TOKEN-FOR-SCANNER-TESTING-1234567890",
+    "twilio_auth_token": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6"
+  },
+  "jwt": {
+    "secret": "my-super-secret-jwt-signing-key-that-should-not-be-in-code",
+    "refresh_secret": "another-secret-for-refresh-tokens-do-not-commit"
+  },
+  "encryption": {
+    "private_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEA0Z3VS5JJcds3xfn/ygWyF8PbnGcY5unA67hqxnfZkrGWBC\nEXAMPLEKEYDATAHERE1234567890abcdefghijklmnopqrstuvwxyz\n-----END RSA PRIVATE KEY-----"
+  }
+}
