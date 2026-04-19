@@ -1,0 +1,48 @@
+name: Defender Tests
+
+on:
+  workflow_dispatch: 
+  pull_request:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+  actions: read
+  security-events: write  # required for SARIF upload to code scanning
+  id-token: write 
+
+jobs:
+  scan-image:
+    runs-on: ubuntu-latest
+    
+    env:
+      # DEFENDER_TENANT_ID: ${{ secrets.DEFENDER_TENANT_ID }}
+      # DEFENDER_CLIENT_ID: ${{ secrets.DEFENDER_CLIENT_ID }}
+      # DEFENDER_CLIENT_SECRET: ${{ secrets.DEFENDER_CLIENT_SECRET }}
+      #DfdBackendServiceEnvironment: PPE
+      #GDN_NUGET_SOURCE_FEED_OVERRIDE: https://pkgs.dev.azure.com/msdoustest/msdo/_packaging/msdotestfeed2/nuget/v3/index.json
+      GITHUB_REPOSITORY_OWNER_ID: ${{ github.repository_owner_id }}
+      GITHUB_REPOSITORY_ID: ${{ github.repository_id }}
+
+    steps:
+      - name: Print GitHub-provided environment variables
+        run: |
+          env | sort | grep -E '^(GITHUB_|RUNNER_|CI=)'
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download Defender CLI
+        run: |
+          curl -L -o defender "https://cli.dfd.security.stage.azure-test.net/public/v2/latest/Defender_linux-x64"
+          chmod +x defender
+
+      - name: Scan image
+        shell: bash
+        run: |
+          ./defender scan image ubuntu:latest
+
+      - name: Scan sbom
+        shell: bash
+        run: |
+          ./defender scan sbom ubuntu:latest
