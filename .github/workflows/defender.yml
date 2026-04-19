@@ -17,11 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      # DEFENDER_TENANT_ID: ${{ secrets.DEFENDER_TENANT_ID }}
-      # DEFENDER_CLIENT_ID: ${{ secrets.DEFENDER_CLIENT_ID }}
-      # DEFENDER_CLIENT_SECRET: ${{ secrets.DEFENDER_CLIENT_SECRET }}
-      #DfdBackendServiceEnvironment: PPE
-      #GDN_NUGET_SOURCE_FEED_OVERRIDE: https://pkgs.dev.azure.com/msdoustest/msdo/_packaging/msdotestfeed2/nuget/v3/index.json
       GITHUB_REPOSITORY_OWNER_ID: ${{ github.repository_owner_id }}
       GITHUB_REPOSITORY_ID: ${{ github.repository_id }}
 
@@ -37,12 +32,7 @@ jobs:
           curl -L -o defender "https://cli.dfd.security.stage.azure-test.net/public/v2/latest/Defender_linux-x64"
           chmod +x defender
 
-      - name: Scan image
+      - name: Scan FS
         shell: bash
         run: |
-          ./defender scan image ubuntu:latest
-
-      - name: Scan sbom
-        shell: bash
-        run: |
-          ./defender scan sbom ubuntu:latest
+          ./defender scan fs .
